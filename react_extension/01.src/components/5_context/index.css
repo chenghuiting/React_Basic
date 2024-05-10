@@ -1,0 +1,14 @@
+.parent{
+    width: 500px;
+    background-color: rgb(91, 41, 230);
+    padding: 30px;
+}
+.child{
+    width: 100%;
+    background-color: cadetblue;
+    padding: 10px;
+}
+.grand{
+    width: 100%;
+    background-color: rgb(47, 233, 88);
+}

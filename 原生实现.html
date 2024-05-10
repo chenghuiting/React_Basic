@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 存放人员列表的容器 -->
+    <ul id="list"></ul>
+
+    <script>
+        // 一些人的数据
+        let personArr = [
+            { id: '001', name: '张三', age: 19 },
+            { id: '002', name: '张四', age: 15 },
+            { id: '003', name: '张五', age: 18 }
+        ]
+
+        //定义人员列表的html字符串
+        let htmlStr = ''
+
+        // 用数据生成人员列表
+        personArr.forEach((person) => {
+            htmlStr += `<li>${person.name}--${person.age}</li>`
+        })
+
+        // 操作DOM呈现界面
+        document.getElementById('list').innerHTML = htmlStr
+    </script>
+</body>
+
+</html>

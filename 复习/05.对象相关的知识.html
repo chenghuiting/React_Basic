@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象相关的知识</title>
+</head>
+
+<body>
+    <script>
+        // 在对象里面，读取变量必须使用 [] 的形式
+        // 传参的时候是字符串，要把这个字符串转为同名的变量
+        let a = 'name'
+
+        let obj = {} //{name:'tom'}
+        obj[a] = 'tom'
+        console.log(obj); //{name: "tom"}
+    </script>
+</body>
+
+</html>
