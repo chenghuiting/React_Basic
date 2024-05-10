@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- CDN引入 三个包-->
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib//react.js"></script>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 1、将文本定义成变量
+        let message = 'Hello World' // 将数据存放在【变量】中，不用频繁的操作DOM
+
+        // 2、监听按钮的点击
+        function btnClick() {
+            // 修改数据
+            message = '你好'
+
+            // 重新渲染界面
+            // root.render((
+            //     <div>
+            //         <h2>{message}</h2>
+            //         <button onClick={btnClick}>修改文本</button>
+            //     </div>
+            // ))
+            // React所有东西都是可见的，修改数据，然后重新渲染页面；Vue修改完数据后会自动渲染页面；
+
+            rootRender()
+        }
+
+        // root.render((
+        //     <div>
+        //         <h2>{message}</h2>
+        //         <button onClick={btnClick}>修改文本</button>
+        //     </div>
+        // ))
+
+        // 3、封装一个渲染函数
+        rootRender() // 函数有【作用域提升】，可以放在函数定义之前调用
+        function rootRender() {
+            root.render((
+                <div>
+                    <h2>{message}</h2>
+                    <button onClick={btnClick}>修改文本</button>
+                </div>
+            ))
+        }
+    </script>
+</body>
+
+</html>

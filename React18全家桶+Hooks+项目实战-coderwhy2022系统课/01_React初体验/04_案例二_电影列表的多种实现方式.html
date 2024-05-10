@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影列表</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    movies: ['1111', '2222', '3333', '4444']
+                }
+            }
+            // 组件数据
+
+            // 渲染内容
+            render() {
+                // 1、对movies进行for循环
+                // const liELs = []
+                // for (let i = 0; i < this.state.movies.length; i++) {
+                //     const movie = this.state.movies[i];
+                //     const liEL = <li>{movie}</li>
+                //     liELs.push(liEL)
+                // }
+                // 2、movies数组 =》liELs数组
+                // const liELs = this.state.movies.map(movie => <li>{movie}</li>)
+                // 高阶函数：让一个函数作为参数或者返回值传给另外一个函数
+
+                return (
+                    <div>
+                        <h2>电影列表</h2>
+                        <ul>
+                            {this.state.movies.map(movie => <li>{movie}</li>)}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>

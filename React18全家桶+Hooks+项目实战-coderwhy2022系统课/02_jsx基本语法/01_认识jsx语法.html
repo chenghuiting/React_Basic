@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX语法</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    friend: {
+                        name: 'qqq',
+                        age: 18,
+                    },
+                    movies: ['111', '2222', '3333']
+                }
+            }
+
+            // 渲染内容
+            render() {
+                return (
+                    <div>
+                        {/* Object.keys()方法 拿到对象中的key */}
+                        {/*Object.keys(this.state.friend)*/}
+                        {/*Object.keys(this.state.friend)[0]*/}
+                        {/*<h2>{10 + 20}</h2>*/}
+                        {this.getMovieELs()}
+                    </div>
+                )
+            }
+            getMovieELs() {
+                const liELs = this.state.movies.map(movie => <li>{movie}</li>)
+                return liELs;
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>
