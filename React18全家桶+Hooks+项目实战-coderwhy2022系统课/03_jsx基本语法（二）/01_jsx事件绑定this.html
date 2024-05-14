@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器案例</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        /*
+        this的四种绑定规则：
+            1、默认绑定，独立执行 foo();this指向，默认调用在非严格模式下指向window，在严格模式下是undefined；
+            2、隐式绑定，被一个对象执行 obj.foo() ->obj;
+            3、显示绑定：call、apply、bind foo.call("aaa") -> String('aaa');
+            4、new绑定：new foo() -> 创建一个新对象，并且赋值给this;
+        */
+
+
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    counter: 100
+                }
+            }
+
+            btn1Click() {
+                console.log(this);//undefined
+                this.setState({ counter: this.state.counter + 1 })
+            }
+            btn2Click = () => {
+                console.log(this);
+            }
+            btn3Click = () => {
+                console.log(this);
+            }
+
+            // 渲染内容
+            render() {
+                return (
+                    <div>
+                        <h2> {this.state.counter}</h2>
+                        <button onClick={this.btn1Click}>按钮1</button>
+                        {/*1、this的第一种绑定方式，bind绑定*/}
+                        <button onClick={this.btn1Click.bind(this)}>按钮1</button>
+                        {/*2、this的第二种绑定方式，绑定箭头函数;ES6 class fieids*/}
+                        <button onClick={this.btn2Click}>按钮2</button>
+                        {/*3、this的第二种绑定方式，直接传入一个箭头函数，此处是隐式绑定*/}
+                        <button onClick={()=>this.btn3Click()}>按钮3</button>
+                    </div>
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>

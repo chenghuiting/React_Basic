@@ -11,9 +11,9 @@
     <div id="root"></div>
 
     <!-- 本地引入 三个包-->
-    <script src="./lib/react.js"></script>
-    <script src="./lib/babel.js"></script>
-    <script src="./lib/react-dom.js"></script>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
 
     <script type="text/babel">
         // 创建root
@@ -24,15 +24,36 @@
             constructor() {
                 super()
                 this.state = {
-                    counter: 100
+                    title: 'hahahaha',
+                    imgURL: 'https://b0.bdstatic.com/f66d46f1036596e262ae56419417a2b5.jpg@h_1280',
+                    isActive: true,
+                    isActive: true,
+                    objStyle: { color: "red", fontSize: "30px" }
                 }
             }
 
             // 渲染内容
             render() {
+                // 1、class绑定写法一，字符串的拼接；
+                const className = `abc cba ${this.state.isActive ? 'active' : ''}`;
+                // 2、class绑定写法二，将所有的class放入一个数组中；
+                const classList = ['abc', 'cba']
+                if (this.state.isActive) classList.push('active');
+                // 2、class绑定写法三，第三方库classnames-> npm install classnames
                 return (
                     <div>
-                        <h2> {this.state.counter}</h2>
+                        {/*1、绑定全局title属性*/}
+                        <h2 title={this.state.title}>我是h2</h2>
+                        {/*2、绑定img属性*/}
+                        <img src={this.state.imgURL} alt="" />
+                        {/*3、绑定class属性，最好使用className*/}
+                        {/*需求：isActive: true active */}
+                        <h2 className={className}>哈哈哈哈</h2>
+                        <h2 className={classList.join(' ')}>哈哈哈哈</h2>
+                        {/*4、绑定style属性*/}
+                        { /* 3.绑定style属性: 绑定对象类型 */}
+                        <h2 style={{ color: "red", fontSize: "30px" }}>呵呵呵呵</h2>
+                        <h2 style={this.state.objStyle}>呵呵呵呵</h2>
                     </div>
                 )
             }
