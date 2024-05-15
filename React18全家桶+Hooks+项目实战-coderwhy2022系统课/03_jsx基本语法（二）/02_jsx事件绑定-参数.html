@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参数</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    counter: 100
+                }
+            }
+
+            btn1Click(event) {
+                console.log(event);
+            }
+            btn2Click(event, name, age) {
+                console.log(event);
+                console.log(name, age);
+            }
+
+            // 渲染内容
+            render() {
+                return (
+                    <div>
+                        {/*1、event参数传递*/}
+                        <button onClick={this.btn1Click.bind(this)}>按钮1</button>
+                        <button onClick={(event) => this.btn1Click(event)}>按钮1</button>
+                        {/*2、额外参数传递*/}
+                        <button onClick={(event, name, age) => this.btn2Click(event, 'lili', 20)}>按钮2</button>
+                    </div>
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>

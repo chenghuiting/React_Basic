@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影列表选中案例-重构1</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        /*
+             默认第一条是红色，之后选中哪条哪条就变成红色，没选中就还是黑色。
+        */
+
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    movies: ['111', '222', '333', '444'],
+                    currentIndex: 0,//记录当前选中的下标，当前选中的下标和li所在的下标相等就绑定class属性；
+                    redColor: undefined,
+                }
+            }
+            liClick = (index) => {
+                this.setState({ currentIndex: index })
+            }
+            // 渲染内容
+            render() {
+                const liEls = this.state.movies.map((item, index) => {
+                    return (
+                        <li
+                            key={item}
+                            className={this.state.currentIndex === index ? 'active' : ''}
+                            onClick={() => this.liClick(index)} // 将index传递过去；
+                        >
+                            {item}
+                        </li>
+                    )
+                })
+                return (
+                    <ul>{liEls}</ul>
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>
