@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    counter: 100,
+                    isReady: true,
+                }
+            }
+
+            // 渲染内容
+            render() {
+                const { isReady } = this.state;
+                // 1、条件判断方式一：使用if进行条件判断；
+                let showElement = null;
+                if (isReady) {
+                    showElement = <h2>hhhhhhh</h2>
+                } else {
+                    <img src="" alt="" />
+                }
+                return (
+                    <div>
+                        <h2> {this.state.counter}</h2>
+                        {/* 2、条件判断方式二：使用三元运算符；*/}
+                        {/* 3、条件判断方式三：逻辑与运算 &*/}
+                        {
+                            isReady && <div>1111</div>
+                        }
+                    </div>
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染案例</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    message: 'hhhhhhhhh',
+                    isShow: true,
+                }
+            }
+            // 1、箭头函数写在render外面；
+            handelClick1 = () => {
+                this.setState({ isShow: !this.state.isShow })
+            }
+
+            // 渲染内容
+            render() {
+                // 2、箭头函数写在render里面；
+                const handelClick2 = () => {
+                    this.setState({ isShow: !this.state.isShow })
+                }
+                return (
+                    <div>
+                        <button onClick={this.handelClick1}>点击切换1</button>
+                        <button onClick={() => this.handelClick1()}>点击切换1</button>
+                        <button onClick={() => handelClick2()}>点击切换2</button>
+                        <h2>{this.state.isShow ? this.state.message : ''}</h2>
+                    </div>
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>
