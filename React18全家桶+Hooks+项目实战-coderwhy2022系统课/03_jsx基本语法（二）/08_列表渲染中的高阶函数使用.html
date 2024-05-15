@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染案例高阶函数的使用</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+
+    <script type="text/babel">
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    students: [{ name: '11', score: 929 }, { name: '22', score: 199 }, { name: '33', score: 93 }, { name: '44', score: 122 },],
+                }
+            }
+
+            // 渲染内容
+            render() {
+                return (
+                    <div>
+                        {
+                            this.state.students.filter(item => item.score > 100).slice(0, 2).map(i => {
+                                return (
+                                    <div>
+                                        <h1>{i.name}</h1>
+                                        <h2>{i.score}</h2>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>

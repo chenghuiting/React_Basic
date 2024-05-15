@@ -45,6 +45,12 @@
                         <button onClick={() => this.handelClick1()}>点击切换1</button>
                         <button onClick={() => handelClick2()}>点击切换2</button>
                         <h2>{this.state.isShow ? this.state.message : ''}</h2>
+                        {
+                            this.state.isShow && <h2>{this.state.message}</h2>
+                        }
+
+                        {/*v-show 的效果,控制元素显示与隐藏*/}
+                        <h2 style={{ display: this.state.isShow ? 'block' : '' }}>hahahhaah</h2>
                     </div>
                 )
             }
