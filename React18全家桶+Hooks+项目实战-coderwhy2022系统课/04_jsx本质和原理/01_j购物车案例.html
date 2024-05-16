@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车案例</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td,
+        th {
+            padding: 10px 20px;
+            border: 1px solid #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 本地引入 三个包-->
+    <script src="../lib/react.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="./format.js"></script>
+
+    <script type="text/babel">
+        // 创建root
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // 封装App组件
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    books: [
+                        { id: 1, name: '11', date: '2023 - 1', price: '1', count: 1 },
+                        { id: 2, name: '22', date: '2023 - 1', price: '1', count: 2 },
+                        { id: 3, name: '33', date: '2023 - 1', price: '1', count: 2 },
+                        { id: 4, name: '44', date: '2023 - 1', price: '1', count: 2 }
+                    ],
+                }
+            }
+            // 计算价格方式三，封装一个方法：
+            getTotalPrice() {
+                const totalPrice = this.state.books.reduce((preValue, item) => {
+                    return preValue += item.price * item.count;
+                }, 0)
+                return totalPrice;
+            }
+            // increment(index) {
+            //     // React不提倡直接修改原数据，而是用一个新数据去替换原数据；
+            //     const newBooks = [...this.state.books]; //此处是一个浅拷贝；
+            //     newBooks[index].count += 1;
+            //     this.setState({ books: newBooks }); // react中执行setState就会调render函数；
+            // }
+
+            // dncrement(index) {
+            //     const newBooks = [...this.state.books];
+            //     newBooks[index].count -= 1;
+            //     this.setState({ books: newBooks });
+            // }
+
+            // 将加和减合并为一个方法
+            countChange(index, count) {
+                const newBooks = [...this.state.books];
+                newBooks[index].count += count;
+                this.setState({ books: newBooks });
+            }
+
+            // 删除
+            removeItem(index) {
+                const newBooks = [...this.state.books];
+                newBooks.splice(index, 1);
+                this.setState({ books: newBooks });
+            }
+            renderBookList() {
+                const { books } = this.state;
+                return <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>书籍名称</th>
+                                <th>出版日期</th>
+                                <th>价格</th>
+                                <th>购买数量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {books.map((item, index) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{index + 1}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.date}</td>
+                                        <td>{formatPrice(item.price)}</td>
+                                        <td>
+                                            {/*<button disabled={item.count <= 1} onClick={() => this.dncrement(index)}>-</button>*/}
+                                            <button disabled={item.count <= 1} onClick={() => this.countChange(index, -1)}>-</button>
+                                            {item.count}
+                                            {/*<button onClick={() => this.increment(index)}>+</button>*/}
+                                            <button onClick={() => this.countChange(index, 1)}>+</button>
+                                        </td>
+                                        <td>
+                                            <button onClick={() => this.removeItem(index)}>删除</button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                    {/*<h2>总价格：￥{totalPrice}</h2>*/}
+                    <h2>总价格：{formatPrice(this.getTotalPrice())}</h2>
+                </div>
+            }
+
+            renderEmpty() {
+                return <div>购物车为空</div>
+            }
+            // 渲染内容
+            render() {
+                const { books } = this.state;
+                // 计算总价格的方式一：
+                // let totalPrice = 0;
+                // for (let i = 0; i < books.length; i++) {
+                //     const book = books[i];
+                //     totalPrice += book.price * book.count;
+                // }
+
+                // 计算总价格的方式二：
+                // const totalPrice = books.reduce((preValue, item) => {
+                //     return preValue += item.price * item.count;
+                // }, 0) //初始值是0
+
+                return (
+                    books.length ? this.renderBookList() : this.renderEmpty()
+                )
+            }
+        }
+
+        // 2、渲染组件
+        root.render(<App />)
+    </script>
+</body>
+
+</html>
