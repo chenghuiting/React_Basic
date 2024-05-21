@@ -1,0 +1,26 @@
+.tab-control {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 50px;
+    /* line-height: 50px; */
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+}
+
+.tab-control .item {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.tab-control .item.active {
+    color: red;
+}
+
+.tab-control .item.active .text{
+    padding: 3px;
+    border-bottom: 1px solid gray;
+}
