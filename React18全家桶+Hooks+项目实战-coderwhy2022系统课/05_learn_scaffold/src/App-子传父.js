@@ -1,3 +1,4 @@
+// 子传父
 import React from "react";
 import axios from 'axios';
 import AddCounter from "./AddCounter";

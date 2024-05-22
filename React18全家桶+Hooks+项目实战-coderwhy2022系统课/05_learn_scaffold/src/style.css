@@ -1,3 +1,9 @@
+/* reset css */
+h1,h2,body{
+    margin: 0;
+    padding: 0;
+}
+
 .tab-control {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -20,7 +26,26 @@
     color: red;
 }
 
-.tab-control .item.active .text{
+.tab-control .item.active .text {
     padding: 3px;
     border-bottom: 1px solid gray;
+}
+
+.nav-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.nav-bar .left,
+.right {
+    width: 80px;
+    background-color: aqua;
+}
+
+.nav-bar .center {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background-color: red;
 }

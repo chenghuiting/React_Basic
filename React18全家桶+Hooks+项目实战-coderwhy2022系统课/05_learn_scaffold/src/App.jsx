@@ -1,24 +1,17 @@
+// 非父子组件通信-Context的基本使用
+
 import React, { Component } from 'react'
-import TabControl from './TabControl'
+import Home from './Home'
+import ThemeContext from './context/theme-context'
 
 export class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      titles: ['流行', '新款', '精选'],
-      titleIndex: 0,
-    }
-  }
-  handelChange(titleIndex) { 
-    this.setState({titleIndex})
-  }
-
   render() {
-    const { titles, titleIndex } = this.state;
     return (
       <div>
-        <TabControl titles={titles} titleIndexChange={(titleIndex) => this.handelChange(titleIndex)} />
-        <div>{titles[titleIndex]}</div>
+        {/* 第二步操作：通过 ThemeContext 中 Provider 中的 value 属性为对应组件的后代传值*/}
+        <ThemeContext.Provider value={{ color: 'red', size: 10 }}>
+          <Home />
+        </ThemeContext.Provider>
       </div>
     )
   }
