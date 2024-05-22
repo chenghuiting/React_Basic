@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ThemeContext from './context/theme-context'
+import UserContext from './context/user-context';
 
 export class HomeInfo extends Component {
   render() {
@@ -7,7 +8,17 @@ export class HomeInfo extends Component {
     console.log(this.context); //{color: 'red', size: 10}
 
     return (
-      <div>HomeInfo：{this.context.color}</div>
+      <div>
+        {/* 共享多个Context数据的用法 */}
+        HomeInfo：{this.context.color}
+        <UserContext.Consumer>
+          {
+            value => {
+              return <h2>Infor user：{value.nickName}</h2>
+            }
+          }
+        </UserContext.Consumer>
+      </div>
     )
   }
 }
