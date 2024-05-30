@@ -1,0 +1,35 @@
+/* 进入动画 */
+.why-appear {
+    -webkit-transform: translateX(-150px);
+    transform: translateX(-150px);
+}
+
+.why-appear-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: -webkit-transform 2s ease;
+    transition: -webkit-transform 2s ease;
+    transition: transform 2s ease;
+    transition: transform 2s ease, -webkit-transform 2s ease;
+}
+
+.why-enter {
+    opacity: 0;
+}
+
+.why-enter-active {
+    opacity: 1;
+    -webkit-transition: opacity 2s ease;
+    transition: opacity 2s ease;
+}
+
+/* 离开动画 */
+.why-exit {
+    opacity: 1;
+}
+
+.why-exit-active {
+    opacity: 0;
+    -webkit-transition: opacity 2s ease;
+    transition: opacity 2s ease;
+}
