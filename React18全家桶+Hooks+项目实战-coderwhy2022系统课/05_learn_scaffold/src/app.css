@@ -61,3 +61,32 @@
     transform: translateX(-100px);
     opacity: 0;
 }
+
+/* transitionGroup 动画 */
+.book-enter {
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px);
+    opacity: 0;
+}
+
+.book-enter-active {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 1;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.book-exit {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.book-exit-active {
+    -webkit-transform: translateX(150px);
+    transform: translateX(150px);
+    opacity: 0;
+}
