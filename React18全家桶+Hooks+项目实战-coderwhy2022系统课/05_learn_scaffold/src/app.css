@@ -1,3 +1,4 @@
+/* css transition动画 */
 /* 进入动画 */
 .why-appear {
     -webkit-transform: translateX(-150px);
@@ -32,4 +33,31 @@
     opacity: 0;
     -webkit-transition: opacity 2s ease;
     transition: opacity 2s ease;
+}
+
+/* SwitchTransition动画样式 */
+.login-enter {
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px);
+    opacity: 0;
+}
+
+.login-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.login-exit {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.login-exit-active {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+    opacity: 0;
 }
