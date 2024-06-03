@@ -1,37 +1,31 @@
-// styled-components
+// classnames库的使用
 
 import React, { PureComponent } from 'react'
-import { AppWrapper, SectionWrapper } from './style'
+import classNames from 'classnames'
 
 export default class App extends PureComponent {
-  constructor() {
-    super()
-    this.state = {
-      color: "yellow",
-      size: 30
+    constructor() {
+        super()
+        this.state = {
+            isaaa: true,
+            isbbb: true,
+            isccc: true,
+        }
     }
-  }
-  render() {
-    const { color, size } = this.state
-    return (
-      <AppWrapper size={size} color={color}>
-        <div className='title'>哈哈哈哈哈哈哈哈哈</div>
-        <button onClick={() => this.setState({ color: 'black' })}>修改颜色</button>
-        <SectionWrapper>
-          <h2 className='secsionh2'>呵呵呵呵呵呵呵</h2>
-          <p>qqqqqq</p>
-        </SectionWrapper>
-      </AppWrapper>
-    )
-  }
+    render() {
+        const { isbbb, isccc } = this.state
+        const classList = ['aaa'];
+        if (isbbb) classList.push('bbb')
+        if (isccc) classList.push('ccc')
+        const className = classList.join(" ")
+
+        return (
+            <div>
+                {/* className里面可以是一个数组 */}
+                <h2 className={className}>hahhhaahahhahah</h2>
+
+                <h2 className={classNames("aaa", { bbb: isbbb, ccc: isccc })}>哈哈哈哈哈哈哈哈</h2>
+            </div>
+        )
+    }
 }
-
-// const name = 'merry'
-// const age = 89
-
-// function foo(...args) {
-//   console.log(args);
-// }
-// foo`名字是：${name},年龄是：${age}` // 表示对函数进行调用
-
-
