@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import About from './pages/About'
+import Category from './pages/Category'
 import store from './store'
 
 export default class App extends PureComponent {
@@ -25,6 +27,8 @@ export default class App extends PureComponent {
         <h2>App Counter: {this.state.counter}</h2>
         <Home />
         <Profile />
+        <About />
+        <Category />
       </div>
     )
   }

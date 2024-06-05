@@ -29,9 +29,9 @@ export default class Profile extends PureComponent {
             <div style={{ border: "1px solid green" }}>
                 <h2>Profile Counter: {this.state.counter}</h2>
                 <div>
-                    <button onClick={() => this.decreace(-1)}>-1</button>
-                    <button onClick={() => this.decreace(-5)}>-5</button>
-                    <button onClick={() => this.decreace(-8)}>-8</button>
+                    <button onClick={() => this.decreace(1)}>-1</button>
+                    <button onClick={() => this.decreace(5)}>-5</button>
+                    <button onClick={() => this.decreace(8)}>-8</button>
                 </div>
             </div>
         )
