@@ -1,23 +1,15 @@
 /*
-  在Category中请求到数据，并共享到store中，供其他组件使用；
+  将Category组件中网络请求的代码移到actioon中，使用 thunk 和 applyMiddleware；
 */
 
 import React, { PureComponent } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux';
-import { renewBannerAction, renewRecommendsAction } from '../store/actionCreators'
+import { fetchHomeMultidateAction } from '../store/actionCreators'
 
 class Category extends PureComponent {
 
     componentDidMount() {
-        axios.get('http://123.207.32.32:8000/home/multidata').then((res) => {
-            // console.log(res.data);  // 严格模式下结果会打印两次；
-            const banners = res.data.data.banner.list;
-            const recommends = res.data.data.recommend.list;
-            // console.log(banners, recommends);
-            this.props.renewBanner(banners)
-            this.props.renewRecommends(recommends)
-        })
+        this.props.fetchHomeMultidate()
     }
 
     render() {
@@ -28,13 +20,13 @@ class Category extends PureComponent {
         )
     }
 }
-const mapStateToProps = (state) => {
-    console.log(state);
-}
-const mapDispatchToProps = (dispatch) => (
-    {
-        renewBanner: banners => dispatch(renewBannerAction(banners)),
-        renewRecommends: recommends => dispatch(renewRecommendsAction(recommends))
+// const mapStateToProps = (state) => ({
+//     counter: state.counter
+// })
+const mapDispatchToProps = (dispatch) => ({
+    fetchHomeMultidate() {
+        dispatch(fetchHomeMultidateAction())
     }
-)
-export default connect(mapStateToProps, mapDispatchToProps)(Category)
+})
+// export default connect(mapStateToProps, mapDispatchToProps)(Category)
+export default connect(null, mapDispatchToProps)(Category)
