@@ -1,6 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { thunk } from 'redux-thunk'
-import reducer from './reducer'
+import counterReducer from './counter/reducer'
+import homeReducer from './home/reducer'
 
 /*
     正常情况下，store.dispatch(object)即只能派发一个对象；
@@ -13,6 +14,23 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({trace: true}) || compose; // 开启trace
 
 // applyMiddleware(thunk, xx, xx) 可以传入多个中间键；
+// const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
+
+// 将两个reducer合并到一起
+const reducer = combineReducers({
+    counter: counterReducer,
+    home: homeReducer,
+})
+
+// // combineReducers实现原理
+// function reducer(state = {}, action) { // 
+//     // 返回一个对象，store中的state；
+//     return {
+//         counter: counterReducer(state.counter, action),
+//         home: homeReducer(state.home, action),
+//     }
+// }
+
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 
 export default store

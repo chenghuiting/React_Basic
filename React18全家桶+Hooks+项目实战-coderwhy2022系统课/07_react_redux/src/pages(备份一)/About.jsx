@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { increaceAction, decreaceAction } from '../store/counter/actionCreators'
+import { increaceAction, decreaceAction } from '../store/actionCreators'
 
 class About extends PureComponent {
 
@@ -71,9 +71,9 @@ class About extends PureComponent {
 
 // 将以上方法写成箭头函数
 const mapStateToProps = (state) => ({
-    counter: state.counter.counter,
-    banners: state.home.banners,
-    recommends: state.home.recommends,
+    counter: state.counter,
+    banners: state.banners,
+    recommends: state.recommends,
 })
 
 const mapDispatchToProps = (dispatch) => ({

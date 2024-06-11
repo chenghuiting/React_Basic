@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import store from '../store'
-import { increaceAction } from '../store/counter/actionCreators'
+import { increaceAction } from '../store/actionCreators'
 
 export default class Home extends PureComponent {
     constructor() {
         super()
         this.state = {
-            counter: store.getState().counter.counter, //页面初始化时展示store里的默认值
+            counter: store.getState().counter, //页面初始化时展示store里的默认值
         }
     }
 
@@ -14,7 +14,7 @@ export default class Home extends PureComponent {
         // 订阅，store中的数据一更新就获取过来
         store.subscribe(() => {
             const state = store.getState()
-            this.setState({ counter: state.counter.counter })
+            this.setState({ counter: state.counter })
         })
     }
 

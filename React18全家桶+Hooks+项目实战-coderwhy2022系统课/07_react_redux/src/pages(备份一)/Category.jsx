@@ -4,7 +4,7 @@
 
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
-import { fetchHomeMultidateAction } from '../store/home/actionCreators'
+import { fetchHomeMultidateAction } from '../store/actionCreators'
 
 class Category extends PureComponent {
 
