@@ -17,12 +17,30 @@ export class Profile extends PureComponent {
           <button onClick={() => this.subNum(5)}>-5</button>
           <button onClick={() => this.subNum(8)}>-8</button>
         </div>
+        <div>
+          <h2>banners：</h2>
+          <ul>
+            {
+              this.props.banners.map((item, index) => <li key={index}>{item.title}</li>)
+            }
+          </ul>
+        </div>
+        <div>
+          <h2>recomments：</h2>
+          <ul>
+            {
+              this.props.recomments.map((item, index) => <li key={index}>{item.title}</li>)
+            }
+          </ul>
+        </div>
       </div>
     )
   }
 }
 const mapStateToProps = (state) => ({
   counter: state.counter.counter,
+  banners: state.home.banners,
+  recomments: state.home.recomments,
 })
 const mapDispatchToProps = (dispatch) => ({
   subNumber(num) {

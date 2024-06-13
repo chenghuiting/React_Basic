@@ -1,8 +1,14 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { addNumber } from '../store/features/counter'
+import { fatchHomeMultidataAction } from '../store/features/home'
 
 class Home extends PureComponent {
+
+  componentDidMount() {
+    this.props.fetchHomeMultidata()
+    console.log(this.props.fetchHomeMultidata());
+  }
 
   addNum(num) {
     this.props.addNum(num)
@@ -27,6 +33,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addNum(num) {
     dispatch(addNumber(num))
-  }
+  },
+  fetchHomeMultidata() {
+    dispatch(fatchHomeMultidataAction({ name: 'why', age: 19 }))
+  },
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
