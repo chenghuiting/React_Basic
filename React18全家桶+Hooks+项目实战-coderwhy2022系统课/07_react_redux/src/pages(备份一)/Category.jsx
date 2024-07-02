@@ -1,6 +1,4 @@
-/*
-  将Category组件中网络请求的代码移到actioon中，使用 thunk 和 applyMiddleware；
-*/
+// 将Category组件中网络请求的代码移到actioon中，使用 thunk 和 applyMiddleware；
 
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';

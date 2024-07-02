@@ -15,6 +15,9 @@ React18全家桶+Hooks+项目实战-coderwhy2022系统课/07_react_redux/package
 React18全家桶+Hooks+项目实战-coderwhy2022系统课/08_learn_reduxtoolkit/node_modules
 React18全家桶+Hooks+项目实战-coderwhy2022系统课/08_learn_reduxtoolkit/package-lock.json
 React18全家桶+Hooks+项目实战-coderwhy2022系统课/08_learn_reduxtoolkit/package.json
+React18全家桶+Hooks+项目实战-coderwhy2022系统课/09_learn_react_router/node_modules
+React18全家桶+Hooks+项目实战-coderwhy2022系统课/09_learn_react_router/package-lock.json
+React18全家桶+Hooks+项目实战-coderwhy2022系统课/09_learn_react_router/package.json
 /dist
 
 
@@ -36,3 +39,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+node_modules
