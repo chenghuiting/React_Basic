@@ -1,16 +1,17 @@
 import React from 'react'
-import { Route, Routes, Link, NavLink, Navigate, useNavigate } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Login from './pages/Login'
-import NotFound from './pages/NotFound'
-import HomeRecommend from './pages/HomeRecommend'
-import HomeRanking from './pages/HomeRanking'
-import Order from './pages/Order'
-import Category from './pages/Category'
-import HomeSongMenu from './pages/HomeSongMenu'
-import Detail from './pages/Detail'
-import User from './pages/User'
+import { Route, Routes, Link, NavLink, Navigate, useNavigate, useRoutes } from 'react-router-dom'
+// import Home from './pages/Home'
+// import About from './pages/About'
+// import Login from './pages/Login'
+// import NotFound from './pages/NotFound'
+// import HomeRecommend from './pages/HomeRecommend'
+// import HomeRanking from './pages/HomeRanking'
+// import Order from './pages/Order'
+// import Category from './pages/Category'
+// import HomeSongMenu from './pages/HomeSongMenu'
+// import Detail from './pages/Detail'
+// import User from './pages/User'
+import routes from './router';
 
 // useNavigate 这个hooks只能在函数式组件中去使用；如果想要在类组件中使用可以使用高阶函数的写法；
 export default function App(props) {
@@ -39,8 +40,8 @@ export default function App(props) {
         </div>
       </div>
       <div className='content'>
-        {/* 映射关系：path => Component */}
-        <Routes>
+        {/* 映射关系：path => Component 这部分代码可以被抽取到专门的Router文件中 */}
+        {/* <Routes>
           <Route path='/' element={<Navigate to="/home" />} />
           <Route path='/home' element={<Home />}>
             <Route path='/home/recommend' element={<HomeRecommend />} />
@@ -54,9 +55,12 @@ export default function App(props) {
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/user' element={<User />} />
 
-          {/* * 表示通配 */}
+          * 表示通配
           <Route path="*" element={<NotFound />} />
-        </Routes>
+        </Routes> */}
+        {
+          useRoutes(routes)
+        }
       </div>
       <div className='footer'>
         footer
