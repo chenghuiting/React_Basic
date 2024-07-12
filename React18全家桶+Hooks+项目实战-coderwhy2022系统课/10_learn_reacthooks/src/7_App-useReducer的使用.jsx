@@ -1,4 +1,4 @@
-// useContext的使用
+// useReducer的使用
 import React, { memo, useReducer, useState } from 'react'
 
 function reducer(state, action) {
