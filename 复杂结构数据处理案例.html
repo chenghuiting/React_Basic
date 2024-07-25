@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = {
+            result: [
+                {
+                    orderId: 1,
+                    orderName: 1,
+                    storeyList: [
+                        {
+                            programmeId: 1,
+                            storeyId: 1,
+                            storeyNum: 1,
+                            colourList: [
+                                {
+                                    programmeId: 1,
+                                    programmeStoreyId: 1,
+                                    orderColourId: 1,
+                                    name: '蓝',
+                                    core: 1,
+                                    model: '(A)',
+                                    groupNo: 1,
+                                    seq: 1,
+                                    segmentList: [
+                                        {
+                                            programmeId: 1,
+                                            programmeStoreyId: 1,
+                                            programmeColourId: 1,
+                                            name: 1,
+                                            checkStandard: 1,
+                                            orderSegmentIds: 1,
+                                            countSegmentNum: 1,
+                                            infoList: [
+                                                {
+                                                    programmeId: 1,
+                                                    programmeStoreyId: 1,
+                                                    programmeColourId: 1,
+                                                    programmeSegmentId: 1,
+                                                    colourCode: 1,
+                                                    colourName: 1,
+                                                    inventoryInfoId: 1,
+                                                    fiberCode: 1,
+                                                    reaSegmentLen: 1,
+                                                    busSegmentLen: 1,
+                                                    scrapSegmentLen: 1,
+                                                    tensile: 1,
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    orderId: 2,
+                    orderName: 2,
+                    storeyList: [
+                        {
+                            programmeId: 2,
+                            storeyId: 2,
+                            storeyNum: 2,
+                            colourList: [
+                                {
+                                    programmeId: 2,
+                                    programmeStoreyId: 2,
+                                    orderColourId: 2,
+                                    name: 'bbbbb',
+                                    core: 2,
+                                    model: 'bbbbb',
+                                    groupNo: 2,
+                                    seq: 2,
+                                    segmentList: [
+                                        {
+                                            programmeId: 2,
+                                            programmeStoreyId: 2,
+                                            programmeColourId: 2,
+                                            name: 2,
+                                            checkStandard: 2,
+                                            orderSegmentIds: 2,
+                                            countSegmentNum: 2,
+                                            infoList: [
+                                                {
+                                                    programmeId: 2,
+                                                    programmeStoreyId: 2,
+                                                    programmeColourId: 2,
+                                                    programmeSegmentId: 2,
+                                                    colourCode: 2,
+                                                    colourName: 2,
+                                                    inventoryInfoId: 2,
+                                                    fiberCode: 2,
+                                                    reaSegmentLen: 2,
+                                                    busSegmentLen: 2,
+                                                    scrapSegmentLen: 2,
+                                                    tensile: 2,
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+            ]
+        }
+        const colons = []
+        if (data.result && data.result.length > 0) {
+            let resultArr = data.result
+            for (let i = 0; i < resultArr.length; i++) {
+                let resultItem = resultArr[i];
+                if (resultItem.storeyList && resultItem.storeyList.length > 0) {
+                    let storeyArr = resultItem.storeyList;
+                    for (let j = 0; j < storeyArr.length; j++) {
+                        let storeyItem = storeyArr[j];
+                        if (storeyItem.colourList && storeyItem.colourList.length > 0) {
+                            let colourArr = storeyItem.colourList;
+                            for (let k = 0; k < colourArr.length; k++) {
+                                let colourItem = colourArr[k];
+                                let name = colourItem.name;
+                                let model = colourItem.model;
+                                let col = {};
+                                col.title = name + model;
+                                colons.push(col)
+                                console.log(name + '===========' + model);
+                                console.log(colons);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+        //  方案详情
+        const planColumns = [], planDataSource = [];
+        var colourListData = []
+        let result = data.result;
+        if (result && result.length > 0) {
+            for (let i of result) {
+                for (let item of i.storeyList) {
+                    // 拿到colourList赋值
+                    colourListData = item.colourList
+
+                    // 找最大的行数
+                    const maxRow = colourListData.reduce((max, item1) => {
+                        console.log('max:', max, item1);
+                        console.log(item1);
+                        return Math.max(max, item1.segmentList.length)
+                    }, 0)
+                    console.log('maxRow:', maxRow);
+                    if (maxRow) {
+                        for (let j = 0; j < maxRow; j++) {
+                            // console.log('i:', i);
+                            let obj = {} // 每一行的对象
+                            colourListData.map((item2, index) => {
+                                let key = `key_${index}`;
+                                if (j == 0) {
+                                    const { name, model, groupNo } = item2
+                                    planColumns.push({
+                                        title: `${name}(${model}/${groupNo})`,
+                                        dataIndex: key,
+                                        align: 'center',
+                                        width: 100,
+                                    })
+                                }
+                                // 填充属性
+                                obj[key] = item2.segmentList[i] ? item2.segmentList[i].segmentNum : ''
+                            })
+                            console.log('obj', obj)
+                        }
+                    }
+                }
+            }
+            console.log(planColumns);
+        }
+    </script>
+</body>
+
+</html>

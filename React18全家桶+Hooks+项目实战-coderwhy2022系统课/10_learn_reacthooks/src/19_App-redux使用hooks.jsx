@@ -1,4 +1,4 @@
-// 复习：redux使用connect的写法；
+// useSelector, useDispatch的使用；
 import React, { memo, } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addNumberAction, subNumberAction } from './store/modules/counter'

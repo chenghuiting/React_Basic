@@ -1,4 +1,4 @@
-// useTransition的使用
+// useDeferredValue的使用
 import React, { memo, useState, useDeferredValue } from 'react'
 import namesArray from './namesArray'
 
@@ -12,6 +12,7 @@ const App = memo((props) => {
     const filterShowNames = namesArray.filter(item => item.includes(keyWrod))
     setShowNames(filterShowNames)
   }
+
   return (
     <div>
       {/* <input type="text" onInput={e => valueChangeHandle(e)} /> */}
