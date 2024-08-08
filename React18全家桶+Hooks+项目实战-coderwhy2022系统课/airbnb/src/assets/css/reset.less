@@ -1,0 +1,29 @@
+@import './variables.less';
+
+// *通配符-选取页面中所有元素(标签) ,对性能有一定影响；
+// *{
+//     padding: 0;
+//     margin: 0;
+// }
+
+// 把需要重置的元素列出来的做法更好
+body,
+button,
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: @textColorPrimary;
+    text-decoration: none;
+}
+
+image {
+    vertical-align: middle;
+}
+
+ul,
+li {
+    list-style: none;
+}
