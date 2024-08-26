@@ -9,6 +9,7 @@ import store from './store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  // 开启了严格模式，所有的生命周期都会执行两次；
   <React.StrictMode>
     <HashRouter>
       <Suspense fallback={<h3>loading...</h3>}>
