@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import hyRequest from '@/services'
+import HomeWrap from './style'
 
 export default function Home() {
 
@@ -11,8 +12,8 @@ export default function Home() {
   }, [])//传入一个空数组保证代码只执行一次
 
   return (
-    <div>
+    <HomeWrap>
       home
-    </div>
+    </HomeWrap>
   )
 }
